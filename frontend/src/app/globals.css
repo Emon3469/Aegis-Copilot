@@ -1,0 +1,183 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, monospace;
+
+  --color-ink-950: #070908;
+  --color-ink-900: #0c0f0d;
+  --color-ink-850: #111412;
+  --color-ink-800: #161a17;
+  --color-ink-750: #1b201c;
+  --color-ink-700: #222823;
+  --color-ink-600: #2c332d;
+  --color-ink-500: #3a423b;
+
+  --color-brand-300: #9af5b5;
+  --color-brand-400: #6be48f;
+  --color-brand-500: #43d06c;
+  --color-brand-600: #2fb357;
+  --color-brand-700: #238a43;
+
+  --animate-blink: blink 1s steps(2, start) infinite;
+  --animate-fade-up: fade-up 0.35s ease-out both;
+  --animate-shimmer: shimmer 2.2s linear infinite;
+
+  @keyframes blink {
+    to { visibility: hidden; }
+  }
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes shimmer {
+    from { background-position: -200% 0; }
+    to { background-position: 200% 0; }
+  }
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: var(--color-ink-950);
+  color: #e8ece9;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+.app-backdrop {
+  background:
+    radial-gradient(60% 55% at 78% 92%, rgba(47, 179, 87, 0.38), transparent 70%),
+    radial-gradient(45% 40% at 98% 55%, rgba(35, 138, 67, 0.28), transparent 70%),
+    radial-gradient(40% 35% at 30% 105%, rgba(35, 138, 67, 0.16), transparent 70%),
+    linear-gradient(180deg, #0a0c0b 0%, #070908 100%);
+}
+
+.glass {
+  background: linear-gradient(180deg, rgba(34, 40, 35, 0.92), rgba(24, 28, 25, 0.92));
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(14px);
+}
+
+.shimmer-text {
+  background: linear-gradient(90deg, #8b958d 0%, #e8ece9 50%, #8b958d 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: var(--animate-shimmer);
+}
+
+.scroll-thin {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.12) transparent;
+}
+.scroll-thin::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.scroll-thin::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+}
+
+.markdown {
+  font-size: 0.94rem;
+  line-height: 1.7;
+  color: #dfe5e1;
+  overflow-wrap: anywhere;
+}
+.markdown > * + * {
+  margin-top: 0.75em;
+}
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4 {
+  color: #f4f7f5;
+  font-weight: 600;
+  line-height: 1.35;
+  margin-top: 1.2em;
+}
+.markdown h1 { font-size: 1.25rem; }
+.markdown h2 { font-size: 1.12rem; }
+.markdown h3 { font-size: 1.02rem; }
+.markdown h4 { font-size: 0.96rem; }
+.markdown > :first-child {
+  margin-top: 0;
+}
+.markdown strong {
+  color: #f4f7f5;
+  font-weight: 600;
+}
+.markdown a {
+  color: var(--color-brand-400);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.markdown ul,
+.markdown ol {
+  padding-left: 1.3rem;
+}
+.markdown ul { list-style: disc; }
+.markdown ol { list-style: decimal; }
+.markdown li + li {
+  margin-top: 0.3em;
+}
+.markdown li > ul,
+.markdown li > ol {
+  margin-top: 0.3em;
+}
+.markdown li::marker {
+  color: var(--color-brand-500);
+}
+.markdown blockquote {
+  border-left: 3px solid var(--color-brand-600);
+  padding-left: 0.9rem;
+  color: #b9c2bc;
+}
+.markdown :not(pre) > code {
+  font-family: var(--font-mono);
+  font-size: 0.84em;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 0.12em 0.4em;
+  border-radius: 6px;
+}
+.markdown table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  display: block;
+  overflow-x: auto;
+}
+.markdown th,
+.markdown td {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.45rem 0.7rem;
+  text-align: left;
+}
+.markdown th {
+  background: rgba(255, 255, 255, 0.04);
+  color: #f4f7f5;
+}
+.markdown hr {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
