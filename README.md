@@ -23,7 +23,8 @@ Aegis-Copilot/
 │   └── evals/           evaluation harness
 ├── frontend/            Next.js app (deployed to Vercel)
 ├── docker-compose.yml   API + web stack for local Docker runs
-└── render.yaml          Render blueprint
+├── render.yaml          Render blueprint (Docker)
+└── DEPLOYMENT.md        Vercel + Render guide
 ```
 
 ## Running with Docker
@@ -107,5 +108,7 @@ All settings are environment variables, listed in [backend/.env.example](backend
 
 ## Deployment
 
-- Backend: Render web service from `render.yaml` (root directory `backend`).
+Step-by-step guide: [DEPLOYMENT.md](DEPLOYMENT.md).
+
+- Backend: Render web service built from `backend/Dockerfile` via `render.yaml` (Blueprint).
 - Frontend: Vercel project with root directory `frontend` and `NEXT_PUBLIC_API_URL` pointing at the Render URL.
